@@ -24,6 +24,7 @@ For a generic static server, the planner falls back to browser storage plus JSON
 
 ## Explore
 
+- The site opens on **Overall plan** on every visit or reload. Click the roombyroom logo to return home from a room editor.
 - **Overall plan** opens a full-width top-down view of the complete apartment, with room names, builder dimensions, 1.2 m wall sections and the current saved layout from each furnished room. It is read-only; choose Living, Dining or Kitchen + utility above the plan to edit that room. Bedrooms and bathrooms are shown unfurnished. Use Room plan, 3D cutaway or Eye level to return to the active room.
 
 - Start with Airy everyday, Laid-back lounge or Timber & company. Changing layouts preserves the other arrangements.
