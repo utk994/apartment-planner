@@ -90,3 +90,8 @@ Added the full apartment shell from the original model coordinates, including th
 Verified full-plan framing, labels, persisted overview after reload, navigation back to the room editor and return to overview. Furniture drag and keyboard movement are disabled in overview. Syntax checks passed for changed JavaScript. Static browser preview was used, leaving the real workspace JSON unchanged.
 
 Architectural refinement: white paper, dark section walls, flat furniture fills with geometry edges and dimension-matched footprints. Planned furniture is shown in place across rooms; material appearances restore in the room editor. Verified overview/3D/overview switching and no console errors.
+
+
+## Two-seat breakfast return — 21 October 2026
+
+Revision 11 adds a separate kitchen layout and custom joinery brief. Original furniture positions / dimensions and the full utility schedule are retained; the new variation turns only the right prep-base drawer access toward dining and adds a 120 × 45 × 90 cm supported ledge plus two compact stool studies. Node checks verified idempotent creation, retained original layouts / electronics / utility, geometric bounds and overlaps, cabinet access, and calculated entry / seat clearances. Only the deliberate occupied-seating / cooking clearance warning remains for the new kitchen: 136 cm entry, 114 cm behind parked stools, 79 cm after 35 cm pull-back. Outer stool footprint remains a provisional 40 cm allowance. Browser plan, cutaway and eye views checked; product reference and custom record are exposed, no console errors.

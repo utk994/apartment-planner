@@ -94,3 +94,8 @@ The opposing units leave a minimum closed aisle of 122.54 cm. Dashed 60 cm openi
 **Utility** focus prioritises utility items in the list and hides kitchen furniture for inspection. **Both spaces** restores the full view. **Utility layout brief** records functions, appliance allowances, installation limits and references. A new custom furniture record tracks this utility package; dishwasher, washer and separate dryer are added to Electronics as model-pending requirements. New cabinet modules default to the focused zone.
 
 Confirm the selected front-load washer / separate dryer pairing and compatible manufacturer stacking kit, appliance / hose / ventilation / door clearances, dryer tank or drain access, electrical requirements, weather exposure, window movement, floor traps and measured doorway. The dryer is supported through its approved stacking system, not ordinary cabinetry. No appliance model or price has been chosen.
+
+
+## Breakfast bar comparison
+
+Kitchen + utility includes **Two-seat breakfast return**, a new 120 × 45 cm ledge at 90 cm height with two compact stool studies. **Try two-seat breakfast bar** opens it from the kitchen, and **Back to original kitchen** returns to its source. The original layout is kept. Custom furniture tracks the ledge and prep-base alteration; stool links point to the IKEA RÄVSTEN seating reference, with outer footprint verification pending. The fit panel shows the parked and pulled-back seat clearances rather than treating the seats as empty space.

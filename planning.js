@@ -1,3 +1,4 @@
+import {seedBreakfastReturn} from './breakfast-return.js';
 import {seedUtilityPlan} from './utility-plan.js';
 import {seedKitchenFinishes} from './kitchen-finishes.js';
 import {seedAppliancePlan} from './appliance-plan.js';
@@ -51,5 +52,6 @@ export function upgradeWorkspace(state){
  if((state.revision||1)<8){seedAppliancePlan(state);state.revision=8;}
  if((state.revision||1)<9){seedKitchenFinishes(state);state.revision=9;}
  if((state.revision||1)<10){seedUtilityPlan(state);state.revision=10;}
+ if((state.revision||1)<11){seedBreakfastReturn(state);state.revision=11;}
  return state;
 }

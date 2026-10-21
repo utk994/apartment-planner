@@ -7,7 +7,9 @@ export function buildKitchen(item,g,{box,cyl,mat,woodMat,metalMat:originalMetal}
  const face=mat(item.color||p.front,{map:grain?woodMat.map:null,roughness:.8}),top=mat(finish?.top||p.top,{roughness:.65}),carcass=mat('#e4dfd1'),dark=mat(finish?'#615b53':'#74766a');
  const b=(w,h,d,x,y,z,m=face)=>box(w,h,d,x,y,z,m,g,.002);
  const pull=(x,y,width=.13)=>b(Math.min(width,w*.5),.009,.025,x,y,d/2+.012,metalMat);
- if(type==='appliancebay'&&role==='laundrystack'){
+ if(role==='breakfastledge'){
+  b(w,.04,d,0,h-.02,0,woodMat);for(const z of [-d*.34,d*.34])b(.035,h-.04,.035,-w/2+.06,(h-.04)/2,z,metalMat);b(w-.10,.055,.035,0,h-.075,-d/2+.045,metalMat);
+ }else if(type==='appliancebay'&&role==='laundrystack'){
   const shell=mat('#e3e3de',{roughness:.45}),panel=mat('#bfc3bd'),glass=mat('#4e5b59',{roughness:.25});
   for(const bottom of [0,.88]){b(.60,.84,.70,0,bottom+.42,.01,shell);b(.56,.065,.012,0,bottom+.755,.366,panel);b(.13,.035,.008,.15,bottom+.755,.376,dark);
    const rim=cyl(.205,.025,0,bottom+.41,.373,metalMat,g);rim.rotation.x=Math.PI/2;
@@ -36,6 +38,8 @@ export function buildKitchen(item,g,{box,cyl,mat,woodMat,metalMat:originalMetal}
   for(const x of [-w*.4,w*.4])for(const z of [-d*.4,d*.4])b(.004,Math.max(.02,2.7432-(item.elevation||0)-h),.004,x,h+(2.7432-(item.elevation||0)-h)/2,z,metalMat);
  }else if(type==='kitchenshelf'){
   b(w,h,d,0,h/2,0,woodMat);for(const x of [-w*.3,w*.3]){b(.02,.28,.03,x,-.14,-d/2+.015,metalMat);b(.02,.02,d*.8,x,-.04,-d*.1,metalMat);}
+ }else if(type==='kitchenstool'&&role==='breakfastseat'){
+  const black=mat('#343a33');cyl(.165,.035,0,h-.0175,0,black,g);for(const x of [-w*.34,w*.34])for(const z of [-d*.34,d*.34])b(.025,h-.035,.025,x,(h-.035)/2,z,black);for(const z of [-d*.34,d*.34])b(w*.68,.02,.02,0,.22,z,black);
  }else if(type==='kitchenstool'){
   b(w,.04,d,0,h-.02,0,woodMat);for(const x of [-w*.35,w*.35])for(const z of [-d*.35,d*.35])b(.025,h-.04,.025,x,(h-.04)/2,z,woodMat);b(w*.7,.02,.02,0,.23,d*.35,woodMat);
  }else if(type==='wallreserve'){
