@@ -46,3 +46,5 @@ body[data-overall=true] .workspace{height:auto;min-height:calc(100dvh - 111px)}b
 @media(max-width:760px){body[data-overall=true] #viewport{height:540px;min-height:540px}body[data-overall=true] .scene-heading{padding:16px 15px 10px}}
 
 body[data-overall=true] #scene-help{left:auto;right:15px;transform:none;background:#fbfaf6de;padding:5px 8px;border-radius:4px}
+
+body[data-overall=true] .scene-panel{background:#fbfaf6}body[data-overall=true] .scene-footer{border-color:#e3dfd5}.scene-label.overall-room-label{background:#fffdf8e8;border:0;color:#30372f}.overall-room-label strong{font-size:10px}.overall-room-label small{font-size:9px;color:#4e554b}@media(max-width:760px){.overall-room-label strong{font-size:7px}.overall-room-label small{font-size:6px}}

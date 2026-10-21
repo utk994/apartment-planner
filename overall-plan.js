@@ -3,7 +3,8 @@ import {rooms,WALL as T,DOOR} from './plan.js';
 // The original apartment shell, in the same metre coordinates as the room editor.
 // Walls are sectioned at 1.2 m; unplanned rooms contain no invented furniture.
 export function createOverallPlan(floorMaterial){
- const group=new THREE.Group(),ink=new THREE.MeshBasicMaterial({color:'#454b43'}),paper=new THREE.MeshBasicMaterial({color:'#e7e2d7'}),doorMat=new THREE.LineBasicMaterial({color:'#89917f'});
+ floorMaterial=new THREE.MeshBasicMaterial({color:'#fffdf8',toneMapped:false});
+ const group=new THREE.Group(),ink=new THREE.MeshBasicMaterial({color:'#30372f',toneMapped:false}),paper=new THREE.MeshBasicMaterial({color:'#f1eee7',toneMapped:false}),doorMat=new THREE.LineBasicMaterial({color:'#89917f'});
  function box(w,h,d,x,y,z,material=ink){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);m.position.set(x,y,z);group.add(m);return m;}
  for(const r of rooms)box(r.w,.08,r.d,r.x+r.w/2,-.04,r.z+r.d/2,r.id==='master'?paper:floorMaterial);
  for(const [x,z,w,d] of [[7.62,5.2832,1.80,.9144],[7.6454,3.3528,1.5494,1.7272],[1.524,5.82,2.032,.3776],[1.7272,6.07,4.0132,.1276],[3.3528,3.556,.2032,2.6416]])box(w,.08,d,x+w/2,-.04,z+d/2,floorMaterial);
