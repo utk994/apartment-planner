@@ -1,0 +1,34 @@
+import {kitchenIdeas,kitchenBounds,utilityBounds} from './kitchen.js';
+export const applianceRequirements=[
+ {id:'need-fridge',name:'Fridge · reserved bay',w:.90,d:.80,h:2.10,role:'fridge',detail:'90 × 80 × 210 cm bay allowance, not a selected refrigerator. Check actual cabinet / door depth, hinge-side opening and ventilation; a wide side-by-side model may need more space.'},
+ {id:'need-microwave',name:'Separate microwave · size allowance',w:.60,d:.55,h:.45,role:'microwave',detail:'Own opening above the dedicated oven, within a 65 cm outer tower. A built-in microwave is assumed for this study. A freestanding unit cannot be enclosed without its specified ventilation clearances.'},
+ {id:'need-oven',name:'Dedicated oven · size allowance',w:.60,d:.60,h:.60,role:'oven',detail:'Separate 60 cm-class oven opening, below the microwave in the tower. Outer tower width is 65 cm; final niche, ventilation, support, circuit and door opening follow the actual model.'},
+ {id:'need-stove',name:'Cooktop · size allowance',w:.75,d:.50,h:.08,role:'hob',detail:'75 cm-class cooktop over a 90 cm base, on the utility-facing wall continuation to the right of the doorway. Width / cut-out / countertop thickness / gas or induction choice to confirm. Not wholly within the short partition directly shared with utility.'},
+ {id:'need-mixer',name:'Mixer grinder · size allowance',w:.30,d:.35,h:.45,role:'mixer',detail:'30 × 35 cm countertop parking allowance. Jars, lid removal, cord and working space need the eventual model. Can store in the cabinet below when not in use.'},
+ {id:'need-juicer',name:'Juicer · size allowance',w:.25,d:.35,h:.45,role:'juicer',detail:'25 × 35 cm countertop parking allowance. Tall slow juicers or a large pulp container may exceed it. Allow space for feed chute, dismantling and cleaning.'},
+ {id:'need-coffee',name:'Coffee maker · size allowance',w:.35,d:.45,h:.45,role:'coffee',detail:'35 × 45 cm parking allowance for a compact machine, not a selected model. A separate grinder, bean storage, water-tank access or large espresso setup may need a wider station.'}
+].map(p=>({...p,type:'appliancebay',room:'kitchen',category:'electronics',brand:'Planning allowance · model pending',color:'#66726b',verified:false,locked:false,pendingAppliance:true,price:null,url:''}));
+export function seedAppliancePlan(state){
+ if(state.layouts.some(l=>l.id==='kitchen-utility-cooking'))return;
+ const palette=kitchenIdeas.utility,items=[],mk=(type,name,w,d,h,x,z,rotation,role,applianceIds=[],elevation=0)=>{const i={id:crypto.randomUUID(),type,name,w,d,h,x,z,rotation,role,applianceIds,elevation,room:'kitchen',zone:'kitchen',referenceId:'kitchen-utility',category:'furniture',color:palette.front,productId:null,locked:false,verified:false,price:null,detail:'New custom layout. Dimensions are planning allowances, not fabrication sizes. Check appliance instructions, finished walls, fillers, services and hood route.'};items.push(i);return i;};
+ const west=(type,name,w,start,role,depth=.65,h=.90,ids=[])=>mk(type,name,w,depth,h,1.7272+depth/2,start+w/2,90,role,ids);
+ const east=(name,w,start,role)=>mk('kitchenbase',name,w,.65,.90,5.4154,start+w/2,-90,role);
+ west('appliancebay','Fridge bay · 90 cm allowance',.90,6.22,'fridge',.80,2.10,['need-fridge']);
+ west('kitchentall','Dedicated oven + separate microwave tower',.65,7.12,'oventower',.65,2.20,['need-oven','need-microwave']);
+ west('kitchenbase','Small-appliance station · 110 cm',1.10,7.77,'appliancestation',.65,.90,['need-mixer','need-juicer','need-coffee']);
+ east('Keep clear · main prep drawers · 90',.90,6.22,'drawers');east('Kitchen sink · 60 cm location study',.60,7.12,'sink');east('Corner access · hardware to resolve',.50,7.72,'corner');
+ mk('kitchenbase','Door-side landing · 30 cm',.30,.65,.90,3.80,8.565,180,'pullout');
+ mk('kitchenbase','Cooktop base · utility-facing wall',.90,.65,.90,4.40,8.565,180,'hob',['need-stove']);
+ mk('kitchenbase','Tray pull-out · 24 cm',.24,.65,.90,4.97,8.565,180,'pullout');
+ mk('kitchenbase','Blind corner · access from right run',.65,.65,.90,5.4154,8.565,180,'blindcorner');
+ mk('kitchenupper','Prep / sink wall storage · 150',1.50,.35,.72,5.5654,6.97,-90,'doors',[],1.55);
+ mk('kitchenupper','Small-appliance wall storage · 110',1.10,.35,.60,1.9022,8.32,90,'doors',[],1.70);
+ mk('wallreserve','Chimney / hood · route to confirm',.90,.40,.60,4.40,8.69,180,'hood',[],1.65);
+ const old=state.layouts.find(l=>l.id==='kitchen-parallel')||state.layouts.find(l=>l.room==='kitchen');
+ for(const i of old?.items.filter(i=>i.zone==='utility')||[])items.push({...structuredClone(i),id:crypto.randomUUID(),referenceId:'utility-utility'});
+ state.layouts.push({id:'kitchen-utility-cooking',name:'04 · Utility-facing cooking',room:'kitchen',kitchenScheme:'utility',appliancePlan:true,subtitle:'Your appliance list · revised L-layout',project:'poetry',description:'Cooktop on the utility-facing wall continuation, to the right of the doorway. Fridge + separate oven / microwave tower on the left; 110 cm small-appliance station and 90 cm clear main prep run. Conditional on the actual wall / doorway and exhaust route.',items});
+ state.customProducts??=[];state.electronics??=[];
+ for(const p of applianceRequirements){if(!state.customProducts.some(v=>v.id===p.id))state.customProducts.push(structuredClone(p));if(!state.electronics.some(v=>v.id===p.id))state.electronics.push({id:p.id,status:'Size reference',note:'Requested for the kitchen. Generic planning allowance only; model, price and installation details to provide later.'});}
+ state.customFurniture??=[];
+ for(const [zone,b] of [['kitchen',kitchenBounds],['utility',utilityBounds]]){const prior=state.customFurniture.find(c=>c.id===zone+'-parallel');state.customFurniture.push({...structuredClone(prior||{}),id:zone+'-utility',referenceId:zone+'-utility',name:(zone==='kitchen'?'Modular kitchen':'Utility cabinetry')+' · Utility-facing cooking',room:zone==='kitchen'?'Kitchen':'Utility',w:b.x1-b.x0,d:b.z1-b.z0,h:2.65,status:'Concept',supplier:'',quote:null,notes:'New alternative, quote separately. Cooktop uses the utility-facing wall continuation right of its doorway; only about 64 cm of that section is directly shared with utility in the scaled plan. Confirm continuous backing wall and chimney discharge to an approved outside outlet; do not assume discharge into the enclosed utility. Existing doorway unchanged in this study. Appliance allowances are not final installation niches.',design:zone==='kitchen'?'Left: 90 cm fridge bay + 65 cm outer tower for a dedicated oven and separate microwave + 110 cm small-appliance counter. Right: 90 cm clear prep + 60 cm sink + 50 cm corner access. Utility-facing return: 30 cm landing + 90 cm hob base + 24 cm tray pull-out + 65 cm blind corner. Proposed base depth 65 cm.':prior?.design||'Laundry bay, utility sink / folding counter and raised cleaning storage.'});}
+}
