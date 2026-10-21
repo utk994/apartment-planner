@@ -81,3 +81,10 @@ Verified on the isolated scratch preview: maker, quote, status, notes and edited
 - Appliance requirements each map to their cabinet / stack host. Three separate Electronics records are added, bringing the flat-wide list to eleven including TV and prior kitchen requirements. A new custom utility package tracks the specification and pending quote without duplicating the kitchen quote.
 - Isolated browser preview verified Utility focus, 3D stacked appliance / cleaning rack proxies, all five utility list entries, the complete utility brief including 123 / 103 / 63 cm rounded clearance values, and plan labels / dashed opening rectangles. Reload retains the new layout and utility metadata. Utility focus hides kitchen furniture and prioritises utility items in the inspector list; Both spaces restores context.
 - Syntax checks passed edited modules. Actual models, stacking compatibility / kit, installation clearances, bin / trap fit, services, weather exposure and window movement remain pending. No site survey or new mobile-viewport test was performed. Opening rectangles do not establish simultaneous appliance loading or an accessible bypass at the washer.
+
+
+## Whole-apartment overview — 21 October 2026
+
+Added the full apartment shell from the original model coordinates, including three bedrooms, three bathrooms, two balconies, foyer, living, dining, kitchen and utility. Current room variants are reused without changing furniture coordinates. The orthographic overview sections walls at 1.2 m and hides raised storage / pendants for floor readability. Door positions remain drawing-scaled studies. No bedroom or bathroom furniture is invented. Main bedroom flooring stays an unconfirmed neutral study.
+
+Verified full-plan framing, labels, persisted overview after reload, navigation back to the room editor and return to overview. Furniture drag and keyboard movement are disabled in overview. Syntax checks passed for changed JavaScript. Static browser preview was used, leaving the real workspace JSON unchanged.
